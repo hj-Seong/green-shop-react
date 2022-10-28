@@ -20,14 +20,14 @@ const DataProvider = ({children}) => {
             productName : "책",
             productDetail : "리액트를 알려주는 책입니다",
             productColor : ["white", "black"],
-            productPicture : "1.png"
+            productPicture : ["1.png", "1-2.png" ]
         },
         {
             productId : 2,
             productName : "책2",
             productDetail : "리액트를 알려주는 책입니다",
-            productColor : ["white", "black"],
-            productPicture : "1.png"
+            productColor : ["white"],
+            productPicture : ["1.png"]
         }
     ])
     // 댓글정보

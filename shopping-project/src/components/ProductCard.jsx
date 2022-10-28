@@ -69,7 +69,7 @@ function ProductCard(props) {
   return (
     <Card style={{ width: '13rem' }}>
         {/** 이미지를 들고올때 변수 사용시 require 사용 */}
-      <Card.Img variant="top" src={require(`../img/${product.productPicture}`)} />
+      <Card.Img variant="top" src={require(`../img/${product.productPicture[0]}`)} />
       <Card.Body>
         <Card.Title>{product.productName}</Card.Title>
         {/** 로그인이 되어있다면, 버튼을 클릭했을때 유저의 likelist에 추가하기 */}
