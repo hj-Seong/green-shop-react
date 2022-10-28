@@ -11,6 +11,7 @@ import { DataProvider } from "./context/DataContext";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./page/Layout";
 import Home from "./page/Home";
+import Login from "./page/Login";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}></Route>
+            <Route path="loginform" element={<Login />}></Route> 
           </Route>
         </Routes>
       </DataProvider>

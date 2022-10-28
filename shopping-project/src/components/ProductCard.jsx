@@ -7,11 +7,21 @@ import Card from 'react-bootstrap/Card';
 import { useContext } from 'react';
 import DataContext from '../context/DataContext'
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function ProductCard(props) {
   const {product} = props;
   const data = useContext(DataContext);
   const [likeCheck, setLikCheck] = useState(false)
+
+  // 로그아웃되었을때 likeCheck를 false로 만들기
+  // data.state.user의 값을 확인해서 업데이트
+  useEffect(()=>{ 
+    if(!data.state.user) {
+      setLikCheck(false)
+    }
+  }, [data.state.user])
+
 
   // 버튼을 클릭했을때, 로그인이 되어있다면, 유저의 likelist에 추가하기
   // 토글기능 (한번 누르면 추가, 선택된 상황에서 누르면 해제)
@@ -52,10 +62,8 @@ function ProductCard(props) {
       })
 
       setLikCheck(true);
-
     }
 
-    console.log(data.state.user)
   };
 
   return (
