@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./page/Layout";
 import Home from "./page/Home";
 import Login from "./page/Login";
+import ProductDetaile from "./page/ProductDetail";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}></Route>
             <Route path="loginform" element={<Login />}></Route> 
+            <Route path="product" element={<ProductDetaile />}></Route>
           </Route>
         </Routes>
       </DataProvider>
