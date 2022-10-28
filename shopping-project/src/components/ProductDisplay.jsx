@@ -1,20 +1,32 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 
-const ProductDisplay = () => {
+const ProductDisplay = (props) => {
+  const {product} = props;
   return (
     <Container>
       <Row>
         <Col>
           <div>
-            <img src="" alt="" />
+            <img src={require(`../img/${product.productPicture}`)} alt="" />
           </div>
         </Col>
         <Col>
           <div>
-            <h1>물건이름</h1>
-            <p>물건 설명</p>
+            <h1>{product.productName}</h1>
+            <p>{product.productDetail}</p>
             <p>색상 설명</p>
-            <div> </div>
+            <div>
+              {
+                // productColor에 있는 color 값을 백그라운드로 사용
+                product.productColor.map((color)=>(
+                  <div className="m-2" style={{ display:"inline-block", 
+                                width: "30px", height:"30px", 
+                                backgroundColor: color,
+                                border : "3px solid lightgrey"
+                              }}></div>
+                )) 
+              }
+            </div>
             <div className="d-grid gap-2">
               <Button variant="primary" size="lg">
                 구매

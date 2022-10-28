@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}></Route>
             <Route path="loginform" element={<Login />}></Route> 
-            <Route path="product" element={<ProductDetaile />}></Route>
+            <Route path="product/:id" element={<ProductDetaile />}></Route>
           </Route>
         </Routes>
       </DataProvider>
