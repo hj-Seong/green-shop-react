@@ -31,11 +31,26 @@ const DataProvider = ({children}) => {
         }
     ])
     // 댓글정보
+    const [allComments, setAllComments] = useState([
+        {
+            commentId : 1,
+            productId : 1,
+            name : "green",
+            text : "좋은 책입니다"
+        },
+        {
+            commentId : 2,
+            productId : 1,
+            name : "blue",
+            text : "괜찮습니다"
+        }
+    ])
+
     
     // 사용할 value 값을 state와 action 분리해서 넣어둠
     const value = {
-        state : {user, productList},
-        action : {setUser, setProductList}
+        state : {user, productList, allComments},
+        action : {setUser, setProductList, setAllComments}
     };
     // DataProvider를 사용할때 DataContext.Provider를 사용할수 있도록함
     // 이때 children은 Provider을 쓸때 데이터를 공용을 쓰는 컴포넌트들

@@ -9,7 +9,6 @@ import DataContext from "../context/DataContext";
 
 const ProductDetaile = () => {
     const data = useContext(DataContext);
-    const [product, setProduct ] = useState("");
     const [comments, setComments] = useState("");
 
     const {id} = useParams();
@@ -19,6 +18,7 @@ const ProductDetaile = () => {
 
     });
 
+    // data의 state의 값을 바로 수정해서 사용
     const getProduct = () => { return data.state.productList.find((product)=>(product.productId == id)) }
 
     return (  
@@ -28,7 +28,12 @@ const ProductDetaile = () => {
             <hr />
             <CommentInput />
             <ListGroup style={{textAlign : "left"}}>
-                <Comment />
+                {
+                    // 이 내용은 월요일에 값을 따로 저장해서 수정할 예정
+                    data.state.allComments
+                        .filter((comment)=>(comment.productId == id))
+                        .map((comment)=>( <Comment />))
+                }
             </ListGroup>
 
         </div>

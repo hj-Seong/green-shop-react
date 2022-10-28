@@ -8,11 +8,13 @@ import { useContext } from 'react';
 import DataContext from '../context/DataContext'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ProductCard(props) {
   const {product} = props;
   const data = useContext(DataContext);
   const [likeCheck, setLikCheck] = useState(false)
+  const navigate = useNavigate();
 
   // 로그아웃되었을때 likeCheck를 false로 만들기
   // data.state.user의 값을 확인해서 업데이트
@@ -69,7 +71,9 @@ function ProductCard(props) {
   return (
     <Card style={{ width: '13rem' }}>
         {/** 이미지를 들고올때 변수 사용시 require 사용 */}
-      <Card.Img variant="top" src={require(`../img/${product.productPicture[0]}`)} />
+      <Card.Img 
+      onClick={()=>{navigate("/product/"+product.productId)}}
+      variant="top" src={require(`../img/${product.productPicture[0]}`)} />
       <Card.Body>
         <Card.Title>{product.productName}</Card.Title>
         {/** 로그인이 되어있다면, 버튼을 클릭했을때 유저의 likelist에 추가하기 */}
