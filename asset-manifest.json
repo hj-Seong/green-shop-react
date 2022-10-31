@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/hj-Seong/green-shop-react/static/css/main.27bf959e.css",
-    "main.js": "/hj-Seong/green-shop-react/static/js/main.de0ddbcc.js",
+    "main.js": "/hj-Seong/green-shop-react/static/js/main.9842fac6.js",
     "static/js/787.a61f225c.chunk.js": "/hj-Seong/green-shop-react/static/js/787.a61f225c.chunk.js",
     "static/media/1-2.png": "/hj-Seong/green-shop-react/static/media/1-2.9526f621c835e2dfb687.png",
     "static/media/1.png": "/hj-Seong/green-shop-react/static/media/1.11489b1201f17706ea56.png",
@@ -11,11 +11,11 @@
     "static/media/slick.woff": "/hj-Seong/green-shop-react/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/hj-Seong/green-shop-react/index.html",
     "main.27bf959e.css.map": "/hj-Seong/green-shop-react/static/css/main.27bf959e.css.map",
-    "main.de0ddbcc.js.map": "/hj-Seong/green-shop-react/static/js/main.de0ddbcc.js.map",
+    "main.9842fac6.js.map": "/hj-Seong/green-shop-react/static/js/main.9842fac6.js.map",
     "787.a61f225c.chunk.js.map": "/hj-Seong/green-shop-react/static/js/787.a61f225c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.27bf959e.css",
-    "static/js/main.de0ddbcc.js"
+    "static/js/main.9842fac6.js"
   ]
 }
