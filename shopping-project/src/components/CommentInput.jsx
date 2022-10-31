@@ -16,13 +16,13 @@ const CommentInput = () => {
     const comment =  {
       commentId : state.commentCount, // 계속해서 증가해야하는 값
       productId : id, // 현재 id값을 가져오기 : param값 > 부모로부터 받아오기
-      name : (state.user ? state.user.name : "" ), // user 를 통해서 받아옴. 단 user의 값이 null일 경우 빈값
+      name : (state.user ? state.user.name : "익명" ), // user 를 통해서 받아옴. 단 user의 값이 null일 경우 빈값
       text : textInput // textInput를 넣어줌
     }
     // 새로운 코멘트 객체를 state의 allcomments에 연결
-    action.setAllComments(state.allComments.concat(comment))
+    action.setAllComments(state.allComments.concat(comment) )
     console.log(state.allComments)
-    state.commentCount++;
+    action.setCommentCount(state.commentCount+1);
   }
 
   return (

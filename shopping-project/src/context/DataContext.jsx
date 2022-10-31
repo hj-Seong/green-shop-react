@@ -45,13 +45,13 @@ const DataProvider = ({children}) => {
             text : "괜찮습니다"
         }
     ])
-    // useState사용하지않은 변수는 리액트 업데이트를 일으키지않는다.
-    let commentCount = 3;
+    
+    const [commentCount, setCommentCount] = useState(3);
     
     // 사용할 value 값을 state와 action 분리해서 넣어둠
     const value = {
         state : {user, productList, allComments, commentCount},
-        action : {setUser, setProductList, setAllComments}
+        action : {setUser, setProductList, setAllComments, setCommentCount}
     };
     // DataProvider를 사용할때 DataContext.Provider를 사용할수 있도록함
     // 이때 children은 Provider을 쓸때 데이터를 공용을 쓰는 컴포넌트들

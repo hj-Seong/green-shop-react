@@ -14,10 +14,10 @@ const ProductDetaile = () => {
             data.state.allComments.filter(
                 (comment)=>(comment.productId == id)));
 
-    // 마운트 하자마자 값을 들고와서 출력함
+    // state.allComment 값이 바뀔때마다 업데이트
     useEffect(()=>{
-
-    });
+        setComments(data.state.allComments.filter((comment)=>(comment.productId==id)))
+    },[data.state.allComments]);
 
     // data의 state의 값을 바로 수정해서 사용
     const getProduct = () => { return data.state.productList.find((product)=>(product.productId == id)) }
@@ -27,9 +27,9 @@ const ProductDetaile = () => {
             <ProductDisplay product={ getProduct() }/>
             <br></br>
             <hr />
-            <CommentInput/>
+            <CommentInput id={id}/>
             <ListGroup style={{textAlign : "left"}}>
-                {comments.map((comment)=>( <Comment />))}
+                {comments.map((comment)=>( <Comment key={comment.commentId} comment={comment} />))}
             </ListGroup>
 
         </div>
