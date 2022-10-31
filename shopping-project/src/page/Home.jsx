@@ -25,7 +25,7 @@ const Home = () => {
           <Col className="px-5">
             <Slider {...settings}>
               { state.productList.map((product)=>(
-								<div>
+								<div >
 									<ProductCard key={product.productId} product={product} />
 								</div>
 							))}

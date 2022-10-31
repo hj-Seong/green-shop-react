@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 
 const ProductDisplay = (props) => {
   const {product} = props;
-  const [index, setIndex] = useState(1)
+  const [index, setIndex] = useState(0)
   return (
     <Container>
       <Row>

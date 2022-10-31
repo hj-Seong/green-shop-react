@@ -69,7 +69,7 @@ function ProductCard(props) {
   };
 
   return (
-    <Card style={{ width: '13rem' }}>
+    <Card style={{ width: '13rem', display:"inline-block" , boxShadow:"0 0 5px 5px black"}}>
         {/** 이미지를 들고올때 변수 사용시 require 사용 */}
       <Card.Img 
       onClick={()=>{navigate("/product/"+product.productId)}}
