@@ -1,7 +1,9 @@
 import React, { useRef, useState } from 'react';
+import { useContext } from 'react';
 import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import DataContext from '../context/DataContext';
 
 function ProfileUpdateModal() {
   const [show, setShow] = useState(false);
@@ -9,6 +11,7 @@ function ProfileUpdateModal() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+	const { action, state } = useContext(DataContext);
 	const [file, setFile] = useState("");
 	const imgShow = useRef();
 
@@ -20,6 +23,14 @@ function ProfileUpdateModal() {
 		setFile(e.target.files[0])
 		imgShow.current.style.backgroundSize = "cover"
 		imgShow.current.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`
+	}
+
+	// 저장을 눌렀을때 state에 사진을 저장하고 모달창을 종료
+	const updateProfile = () => {
+		action.setUser({
+			...state.user, profile : URL.createObjectURL(file)
+		})
+		handleClose();
 	}
 
   return (
@@ -45,7 +56,7 @@ function ProfileUpdateModal() {
           <Button variant="secondary" onClick={handleClose}>
             취소
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={updateProfile}>
             저장
           </Button>
         </Modal.Footer>

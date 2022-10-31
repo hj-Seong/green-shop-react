@@ -11,7 +11,15 @@ const Profile = () => {
 				<Row>
 					<Col>
 						{/** 프로필 사진과 사진을 수정할 모달창 */}
-						{ state.user.profile ? <h1>값이 있습니다</h1> : <h1>값이 없습니다</h1>}
+						{ state.user.profile ? 
+						<div style={{
+								width:"150px", 
+								height :"150px", 
+								backgroundImage: `url(${state.user.profile})`,
+							 	backgroundSize:"cover" }
+							}></div>
+						: 
+						<div style={{width:"150px", height :"150px", backgroundColor:"lightgray"}}> 이미지가 없습니다 </div>}
 						<ProfileUpdateModal />
 					</Col>
 					<Col>
