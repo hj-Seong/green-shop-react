@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/green-shop-react/static/css/main.645064eb.css",
-    "main.js": "/green-shop-react/static/js/main.f9683fce.js",
+    "main.js": "/green-shop-react/static/js/main.cf3a05eb.js",
     "static/js/787.a61f225c.chunk.js": "/green-shop-react/static/js/787.a61f225c.chunk.js",
     "static/media/1-2.png": "/green-shop-react/static/media/1-2.9526f621c835e2dfb687.png",
     "static/media/1.png": "/green-shop-react/static/media/1.11489b1201f17706ea56.png",
@@ -11,11 +11,11 @@
     "static/media/slick.woff": "/green-shop-react/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/green-shop-react/index.html",
     "main.645064eb.css.map": "/green-shop-react/static/css/main.645064eb.css.map",
-    "main.f9683fce.js.map": "/green-shop-react/static/js/main.f9683fce.js.map",
+    "main.cf3a05eb.js.map": "/green-shop-react/static/js/main.cf3a05eb.js.map",
     "787.a61f225c.chunk.js.map": "/green-shop-react/static/js/787.a61f225c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.645064eb.css",
-    "static/js/main.f9683fce.js"
+    "static/js/main.cf3a05eb.js"
   ]
 }
