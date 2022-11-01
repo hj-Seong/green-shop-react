@@ -11,7 +11,7 @@ const DataContext = createContext();
 const DataProvider = ({children}) => {
     // 사용할 값들을 useState를 통해 값을 들고옴
     // 유저정보  {name: "홍길동", profile : 사진, likelist : [] }
-    const [user, setUser] = useState({name: "홍길동", profile : null, likelist : [] });
+    const [user, setUser] = useState({name: "성춘향", profile : null, likelist : [] });
     
     // 상품정보 : 상품배열로 들어감
     const [productList, setProductList] = useState([
