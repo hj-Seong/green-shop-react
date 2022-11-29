@@ -2,6 +2,9 @@ import { useState } from "react";
 import PropsChildren from "./PropsChildren";
 import StateBox from "./StateBox";
 const PropsParent = () => {
+    // props을 통해서 state의 값을 자식 컴포넌트로 전달할 수 있다
+    // props을 통해서 리액트의 값은 위에서 아래로, 부모에서 자식으로 전달되는 것을 확인.
+    // state의 set함수를 전달해서 부모의 값을 수정할 수도 있다
     const [count, setCount] = useState(1);
     return (
         <div>
