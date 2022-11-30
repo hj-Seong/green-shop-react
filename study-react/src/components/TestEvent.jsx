@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 
 const TestEvent = () => {
   const [memos, setMemo] = useState([
@@ -13,9 +13,17 @@ const TestEvent = () => {
     <div>
       <h3>이벤트 테스트 공간입니다</h3>
       {/*map을 통해서 전체 내용을 출력해주세요*/}
-
+      {memos.map((memo)=>(
+        <div key={memo.id}>
+          <p>{memo.text}</p>
+        </div>
+      ))}
       {/* TestBox를 이용하여 내용을 출력해주세요*/}
-      
+      {
+        memos.map((memo)=>(
+          <TestBox memo={memo} setMemo={setMemo} memos={memos}/>
+        ))
+      }
     </div>
   );
 };
@@ -23,7 +31,7 @@ const TestEvent = () => {
 //TestEvent에서 사용할 TestBox
 const TestBox = (props) => {
   // memo와 setMemos를 props값으로 들고오기
-  const {} = props;
+  const {memo, setMemo, memos} = props;
   
   //수정창을 닫고 여는 state
   const [modify, setModify] = useState(false);
@@ -33,19 +41,26 @@ const TestBox = (props) => {
   return ( 
     <div>
       {/* memo의 값 들고오기 */}
-      <h4>{}</h4>
+      <h4>{memo.text}</h4>
       
       { // modify true일때 화면에 출력
         // true 일때, input의 값을 입력받고, 
         // 버튼을 누르면 그 값이 setMemos로 수정되고 modify가 false로 바뀜
         modify ? (
           <div> 
-            <input type="text" />
-            <button>수정완료</button>
+            <input type="text" onChange={(e)=>{setInput(e.target.value)}}/>
+            <button 
+            onClick={()=>{
+              const modifyMemo = {...memo, text : input}
+              setMemo(memos.map((m)=>(m.id== memo.id? modifyMemo : m)));
+              setModify(false);
+            }}
+            >
+              수정완료</button>
           </div>
         ):
         (// 버튼을 누르면 modify가 true
-          <button>수정</button>
+          <button onClick={()=>{setModify(true)}}>수정</button>
         )
       }
 
