@@ -38,6 +38,11 @@ const TestBox = (props) => {
   // 수정할 내용을 저장하는 state
   const [input, setInput] = useState("");
 
+  /** onMouseEnter, onMouseLeave를 사용하여 
+   * 마우스가 div위에 있다면 backgoundColor를 lightgrey
+   * 마우스가 div위를 떠난다면 backgoundColor를 white
+   * 로 바뀌게 작성하세요
+   */
   return ( 
     <div>
       {/* memo의 값 들고오기 */}
