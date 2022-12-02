@@ -20,7 +20,7 @@ function App() {
   // return 안에 원하는 컴포넌트를 넣어서 확인하면서 공부하시면됩니다
   return (
     <div className="App">
-      <EventOBJ />
+      <TestEvent />
     </div>
   );
 }
