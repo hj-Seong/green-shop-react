@@ -1,0 +1,45 @@
+import { useState } from "react";
+
+const Hook = () => {
+    const [count, setCount] = useState(1);
+    const changeCount = () => {
+        // setCount가 3번 진행이 되었기 때문에 결과값이 4가 출력이 되어야한다
+        // 실행한 결과: 2
+        // 아래작성한 코드는 비동기로 진행이되어서 원하는 값이 나오지 않는다
+        setCount(count+1);
+        setCount(count+1);
+        setCount(count+1);
+    }
+
+    // setCount를 세번 실행했을때 +3이 되게하기위한 함수
+    const changeCountFunc = () => {
+        // setCount안에 익명함수 사용
+        // 이전 state을 매개변수로 들고와서 사용한 후, 그 값을 return해서 돌려줌
+        setCount((prevState)=>(prevState+1));
+        setCount(prevState => prevState+1);
+        setCount(prevState => { return prevState+1});
+    }
+
+    return ( 
+        <div>
+            <h1>Hook에 관하여</h1>
+            <p> 
+                Hook은 리액트 16.8에서 추가된 버전, 이전버전에서는 클래스형으로 사용 <br />
+                hook 함수형 컴포넌트에서 state와 라이프 사이클 사용
+            </p>
+            <h3>useState</h3>
+            <p>
+                컴포넌트 안에서 state를 사용할수 있게하는 hook <br />
+                const [사용할 변수이름, 값을 수정할 함수] = useState(들어갈 값) <br />
+                여러개 작성 가능, 들어갈 값에는 모든 자료형이 들어갈수 있다 <br />
+                !useState는 비동기로 값을 넣어줌! : 값을 복잡하게 연속적 넣어줄때 문제가 생길수도있다 <br />
+                *클래스형의 state도 비동기로 들어간다.
+            </p>   
+            
+            <button onClick={changeCount}>setCount 비동기: {count}</button>
+            <button onClick={changeCountFunc}>setCount 안에 함수 사용 : {count}</button>
+        </div>
+     );
+}
+ 
+export default Hook;
