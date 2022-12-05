@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 
 const Hook = () => {
@@ -20,6 +21,38 @@ const Hook = () => {
         setCount(prevState => { return prevState+1});
     }
 
+    const [time, setTime] = useState(0);
+
+    // 라이프 사이클 중 생성될때만 실행
+    // 첫번째 값은 실행할 함수, 두 번째 값으로 빈 배열
+    // 컴포넌트가 생성되자마자 실행하고 싶은 함수 또는 자바스크립트가 있을 때.
+    // setInterval과 같이 타이머함수를 사용해 줄 때 사용.
+    // 생성되자마자 실행할 이벤트를 DOM에 추가해주고 싶을 때
+    useEffect(()=>{
+        console.log("생성될때만 실행됩니다");
+        // 1초마다 실행할 함수를 작성
+        // state와 함께 사용하는 부분 - time state 작성
+        setInterval(changeTime,1000);
+    },[])
+    // changeTime
+    const changeTime = ()=>{
+        console.log(time)
+        setTime(time+1);
+    }
+
+    // 생성하고, 모든 state값과 props값이 업데이트가 될때마다 실행
+    // 업데이트 : 화면에 내용이 바뀔 때
+    useEffect(()=>{
+        console.log("업데이트가 되었습니다")
+    });
+
+    // 특정값이 업데이트 될때마다 화면 업데이트
+    // 두번째 값에 특정 state,props이 업데이트 될때마다
+    // 함수가 실행될수 있도록 작성
+    useEffect(()=>{
+        console.log("count가 실행되었습니다")
+    },[count])
+
     return ( 
         <div>
             <h1>Hook에 관하여</h1>
@@ -38,6 +71,14 @@ const Hook = () => {
             
             <button onClick={changeCount}>setCount 비동기: {count}</button>
             <button onClick={changeCountFunc}>setCount 안에 함수 사용 : {count}</button>
+            <hr />
+
+            <h3>useEffect</h3>
+            <p>
+                라이프사이클을 사용할수 있는 hook <br />
+                컴포넌트의 생애주기 - 컴포넌트가 생성, 업데이트, 삭제 <br /> 
+            </p>
+            <h4>useEffect로 컴포넌트 생성할때 작성한 타이머 :{time}</h4>
         </div>
      );
 }
