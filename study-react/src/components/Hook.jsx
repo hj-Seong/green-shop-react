@@ -36,8 +36,9 @@ const Hook = () => {
     },[])
     // changeTime
     const changeTime = ()=>{
-        console.log(time)
-        setTime(time+1);
+        console.log("count",count)
+        console.log("time",time)
+        setTime(time => time+1);
     }
 
     // 생성하고, 모든 state값과 props값이 업데이트가 될때마다 실행
