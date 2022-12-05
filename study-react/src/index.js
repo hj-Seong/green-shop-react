@@ -8,9 +8,9 @@ import reportWebVitals from './reportWebVitals';
 // 그 안에 리액트 컴포넌트로 보여줌(렌더)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+
     <App />
-  </React.StrictMode>
+
 );
 
 // If you want to start measuring performance in your app, pass a function

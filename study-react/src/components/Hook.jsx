@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -34,10 +35,12 @@ const Hook = () => {
         // state와 함께 사용하는 부분 - time state 작성
         setInterval(changeTime,1000);
     },[])
-    // changeTime
+    // changeTime 함수
     const changeTime = ()=>{
+        // 값을 콜백으로 들고오면서 count와 time을 고정
         console.log("count",count)
         console.log("time",time)
+        // 이전 state에 접근을 해서 그 값을 들고오는 형식으로 사용
         setTime(time => time+1);
     }
 
@@ -53,6 +56,28 @@ const Hook = () => {
     useEffect(()=>{
         console.log("count가 실행되었습니다")
     },[count])
+
+    // useRef를 통해서 DOM을 들고와서 확인
+    // 현재컴포넌트를 생성할때, 그 화면에서 바로 들고 옴
+    // 가져올 태그에 ref를 지정해서 들고옴
+    const inputElement = useRef();
+    useEffect(()=>{
+        const r= Math.floor(Math.random()*255);
+        const g= Math.floor(Math.random()*255);
+        const b= Math.floor(Math.random()*255);
+        inputElement.current.style.color = `rgb(${r},${g},${b})`;
+        document.title = `현재 time${time}`;
+        document.body.style.backgroundColor =`rgb(${r},${g},${b})`;
+    },[time])
+
+    useEffect(()=>{
+        // useEffect에서 컴포넌트가 삭제될 때 
+        // 실행할 내용을 작성할 수 있다
+        // 두번째 값에 [] 빈배열을 넣고, return에 원하는 함수 내용 작성
+        // 라이프 사이클 중 생성과 삭제할 때만 실행하고 싶으면
+        // 반드시 두번째 값에 [] 빈 배열을 넣고 작성.
+        return console.log('삭제되었습니다');
+    },[])
 
     return ( 
         <div>
@@ -80,6 +105,9 @@ const Hook = () => {
                 컴포넌트의 생애주기 - 컴포넌트가 생성, 업데이트, 삭제 <br /> 
             </p>
             <h4>useEffect로 컴포넌트 생성할때 작성한 타이머 :{time}</h4>
+            <hr />
+            <h3>useRef 사용</h3>
+            <input type="text" ref={inputElement}/>
         </div>
      );
 }
