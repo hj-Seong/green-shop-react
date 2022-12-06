@@ -61,8 +61,42 @@ const APIComp = () => {
                 { news ? news.articles[0].title
                     : "값이 아직 오지 않았습니다" }
             </h3>
+            {/** 
+             * 1. 현재 가져오는 데이터가 배열! 
+             * 2. 배열안에 요소가 객체인지, 문자열인지 확인 후 출력
+             * */}
+            { // 값이 없을 때, 출력하지않도록 삼항 연산자,
+              // && 값이 있을 때만 출력할수 있도록 코드작성
+                news && news.articles.map((article)=>(
+                    <li>{article.title}</li>
+                ))
+            }
+            <APIBox title="제목" />
+            <hr />
+            {
+                news && news.articles.map((article)=>(
+                    <APIBox title={article.title} 
+                            urlToImage={article.urlToImage}
+                    />
+                ))
+            }
         </div>
     );
 }
 
 export default APIComp;
+
+// 여러개의 데이터를 동일한 화면으로 출력하기 위해 
+// 컴포넌트를 작성해서 사용 >> 그 값을 props 받아옴
+const APIBox = (props) => {
+    // props의 값은 객체로 들어오기 때문에, 
+    // 객체 기호로 감싸서 구조화할당 사용 / 배열은 배열기호로 감싸서
+    const { title, urlToImage } = props 
+    return ( 
+        <div>
+            <h3>{title}</h3>
+            {/** 이미지가 없을때 img 태그가 출력되지 않게 작성 */}
+            <img src={urlToImage} alt="사진" width="300px" />
+        </div>
+    );
+}
