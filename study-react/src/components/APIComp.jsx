@@ -96,7 +96,11 @@ const APIBox = (props) => {
         <div>
             <h3>{title}</h3>
             {/** 이미지가 없을때 img 태그가 출력되지 않게 작성 */}
-            <img src={urlToImage} alt="사진" width="300px" />
+            {
+                urlToImage ? 
+                    <img src={urlToImage} alt="사진" width="300px" />
+                    : <div style={{ width:"300px", height:"300px", backgroundColor:"lightgray", display:"inline-block" }}></div>
+            }
         </div>
     );
 }
