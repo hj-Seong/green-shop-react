@@ -8,6 +8,7 @@ import TestEvent from './components/TestEvent';
 import EventOBJ from './components/EventOBJ';
 import Hook from './components/Hook';
 import TestHook from './components/TestHook';
+import APIComp from './components/APIComp';
 
 // App안에 원하는 내용을 바로 작성할 수 있지만
 // 각 내용을 컴포넌트로 만들어서 화면에 출력을 하고 있다
@@ -22,7 +23,7 @@ function App() {
   // return 안에 원하는 컴포넌트를 넣어서 확인하면서 공부하시면됩니다
   return (
     <div className="App">
-      <TestHook />
+      <APIComp />
     </div>
   );
 }
