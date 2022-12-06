@@ -55,9 +55,12 @@ const APIComp = () => {
             {/** news를 조건식으로 넣으면, 
              * 값이 있을 때 : true, 값이 없을때 false */}
             { news ? news.status
-                    : "값이 아직 오지 않았습니다"}
+                    : "값이 아직 오지 않았습니다" }
             {/** 실습 : articles의 0번째 인덱스의 title출력   */}
-
+            <h3>
+                { news ? news.articles[0].title
+                    : "값이 아직 오지 않았습니다" }
+            </h3>
         </div>
     );
 }
