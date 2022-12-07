@@ -36,11 +36,14 @@ const TestAPI = () => {
             {/** 값이 들어왔지만 배열에 값이 없을 경우 
              *  삼항 연산자 안에 또 삼항연산자가 들어갈수 있다
             */}
-            {
-                news && news.sources.length>0 ? news.sources.map((source)=>(
-                    <li>{source.description}</li>
-                ))
-                : "검색 결과가 없습니다"
+            {   // news의 값이 있다면 화면출력
+                news && 
+                    // news의 길이가 0보다 길다면 ? 참:거짓
+                    news.sources.length>0 ? 
+                    news.sources.map((source)=>(
+                        <li>{source.description}</li>
+                    ))
+                    : "검색 결과가 없습니다"
             }
         </div>
      );
