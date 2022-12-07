@@ -6,6 +6,9 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import About from './About';
 import AboutMain from './AboutMain';
 import AboutTest from './AboutTest';
+import Board from './Board';
+import BoardPage from './BoardPage';
+import Error from './Error';
 import Home from './Home';
 
 const RootIndex = () => {
@@ -28,7 +31,30 @@ const RootIndex = () => {
                      */}
                     <Route index element={<AboutMain/>}></Route>
                 </Route>
+                <Route path='*' element={<Error />}></Route>
             </Routes>
+
+            {/** Routes를 사용하면 같은 주소일때 화면을 분할해서 사용할수 있다 */}
+            <Routes>
+                <Route path='/' element={<Home/>}></Route>
+                {/** 첫번째 Route에서 사용하지않은 주소에 연결하면 현재화면만 보인다
+                 * 단, *을 사용할경우, 
+                 * 사용하지않는 주소가 없기에 *를 사용한 주소는 항상 보인다
+                 */}
+                <Route path='test' element={<Home />}></Route>
+                {/** 주소를 통해서 값을 전달 */}
+                <Route path='/board' element={<Board />}>
+                    {/** 주소로 전달하는 값을 prams 값이라고 한다
+                     * 이 값은 { path의:이름 : "주소에작성해준값"}
+                     * :id는 그 사용할 공간의 이름이기때문에 원하는 이름으로 작성해서 사용
+                     * 이와같이 prams값을 사용한 주소는 
+                     * 어떤 값이 들어와도 같은 컴포넌트를 출력한다
+                     */}
+                    <Route path='/board/:id' element={<BoardPage />}></Route>
+                </Route>
+            </Routes>
+
+
         </BrowserRouter>
 
      );
