@@ -51,6 +51,8 @@ const RootIndex = () => {
                      * 어떤 값이 들어와도 같은 컴포넌트를 출력한다
                      */}
                     <Route path='/board/:id' element={<BoardPage name="게시판" />}></Route>
+                    <Route path='/board/about' element={<About />}></Route>
+                     
                 </Route>
             </Routes>
         </BrowserRouter>

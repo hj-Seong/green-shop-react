@@ -13,7 +13,8 @@ const Board = () => {
                 boardlist.map((boardid)=>(
                     <NavLink 
                     // NavLink에 isActive 값을 화살표 함수로 가져와서 사용
-                    style={ ({isActive})=> isActive ? {color:"blue"} : {color:"black"} }
+                    // isPending 뜻 : 보류중
+                    style={ ({isActive })=> isActive ? {color:"blue"} : {color:"black"} }
                     to={`/board/${boardid}`}>
                         {boardid}{" "}
                     </NavLink>)
