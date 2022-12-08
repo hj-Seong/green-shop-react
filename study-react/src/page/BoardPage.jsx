@@ -1,7 +1,11 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const BoardPage = () => {
+const BoardPage = (props) => {
+    // 받아온 props값 확인
+    // - RootIndex에서 컴포넌트에 직접넣어준 props값
+    const {name, outletname} = props;
+
     // 주소를 통해 전달해준 params 값을 가져와서 사용할수 있다
     // params 안에 객체 형태로 들어있기 때문에, 
     // 구조화 할당을 통해서 사용가능
@@ -24,12 +28,17 @@ const BoardPage = () => {
     // 현재 id와 같은 메모를 변수에 저장  
     const memo = memos.find((m)=> m.id == id)
 
+    //useNavigate를 통해서 자바스크립트를 통해 주소이동
+    const navigate = useNavigate();
+
     return ( 
         <div>
-            board의 {id}페이지입니다
+            {outletname}의 {name} board의 {id}페이지입니다
             <p>{ memo ? memo.title : "값이 없는 페이지입니다"}</p>
+            <button onClick={()=>{ navigate(-1);}}>뒤로가기</button>
+            <button onClick={()=>{ navigate('/board')}}>게시판 목록으로 이동</button>
         </div>
-     );
+    );
 }
  
 export default BoardPage;
