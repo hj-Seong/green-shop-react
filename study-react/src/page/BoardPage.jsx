@@ -2,6 +2,17 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const BoardPage = (props) => {
+    // 함께 사용할수 있는 react-router-dom의 hook
+    // useLocation : window.history에 들어가있는 값 접근
+    /** const location = useLocation(); 
+     * const state = location.state;
+    */
+    // useSearchParam : 쿼리스트링 값 접근
+    /** const [searchParams, setSearchParams] =  useSearchParams()
+     * const id = searchParams.get('id');
+    */
+
+
     // 받아온 props값 확인
     // - RootIndex에서 컴포넌트에 직접넣어준 props값
     const {name, outletname} = props;
