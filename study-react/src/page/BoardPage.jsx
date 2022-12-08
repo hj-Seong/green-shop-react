@@ -19,7 +19,7 @@ const BoardPage = (props) => {
 
     // 주소를 통해 전달해준 params 값을 가져와서 사용할수 있다
     // params 안에 객체 형태로 들어있기 때문에, 
-    // 구조화 할당을 통해서 사용가능
+    // 구조화 할당을 통해서 사용가능 - 항상 string 값으로 들어옴
     const {page, id} = useParams();
 
     // 5개의 데이터를 가지고있는 배열 작성
@@ -37,7 +37,7 @@ const BoardPage = (props) => {
     // 객체의 값을 돌려줄 경우에는 값을 다른 변수에 넣고 확인
     // 배열의객체요소를 꺼내서 하나씩 비교하여 참인 요소를 return
     // 현재 id와 같은 메모를 변수에 저장  
-    const memo = memos.find((m)=> m.id == id)
+    const memo = memos.find((m)=> m.id === parseInt(id))
 
     //useNavigate를 통해서 자바스크립트를 통해 주소이동
     const navigate = useNavigate();
