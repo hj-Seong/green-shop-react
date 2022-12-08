@@ -50,7 +50,7 @@ const RootIndex = () => {
                      * 이와같이 prams값을 사용한 주소는 
                      * 어떤 값이 들어와도 같은 컴포넌트를 출력한다
                      */}
-                    <Route path='/board/:id/:num' element={<BoardPage />}></Route>
+                    <Route path='/board/:id' element={<BoardPage />}></Route>
                 </Route>
             </Routes>
         </BrowserRouter>
