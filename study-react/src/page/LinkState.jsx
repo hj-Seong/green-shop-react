@@ -16,9 +16,11 @@ const LinkState = () => {
                 LocationState의 path는 /location
             </p>
             <p>Link의 속성 state에 값을 넣어서 전달</p>
-            <Link to='/location' state={'값전달'}>LocationState로 문자열 이동</Link>
-            <Link to='/location' state={varInput}>LocationState로 변수값 이동</Link>
+            <p>Link의 state 대신에 useNavigate의 두번째 인자에 중괄호(객체형태)를 통해서 state:값 을 전달할 수 있다</p>
+            <Link to='/location' state={'값전달'}>LocationState로 문자열 이동</Link> <br />
+            <Link to='/location' state={varInput}>LocationState로 변수값 이동</Link> <br />
 
+            <p> Link의 to 대신에 useNavigate를 사용해도 동일한 효과</p>
             <Link to='/query?name=안녕'>쿼리스트링을 가지고 이동</Link>
         </div>
     );
