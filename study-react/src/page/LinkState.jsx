@@ -18,6 +18,8 @@ const LinkState = () => {
             <p>Link의 속성 state에 값을 넣어서 전달</p>
             <Link to='/location' state={'값전달'}>LocationState로 문자열 이동</Link>
             <Link to='/location' state={varInput}>LocationState로 변수값 이동</Link>
+
+            <Link to='/query?name=안녕'>쿼리스트링을 가지고 이동</Link>
         </div>
     );
 }

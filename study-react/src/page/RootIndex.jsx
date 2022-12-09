@@ -12,6 +12,7 @@ import Error from './Error';
 import Home from './Home';
 import LinkState from './LinkState';
 import LocationState from './LocationState';
+import QueryString from './QueryString';
 
 const RootIndex = () => {
     return ( 
@@ -35,6 +36,7 @@ const RootIndex = () => {
                 </Route>
                 <Route path='/link' element={<LinkState />}></Route>
                 <Route path='/location' element={<LocationState />}></Route>
+                <Route path='/query' element={<QueryString />}></Route>
                 <Route path='*' element={<Error />}></Route>
             </Routes>
 
