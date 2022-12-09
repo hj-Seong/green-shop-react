@@ -7,10 +7,11 @@ import { combineReducers } from "redux";
 
 //작성한 리덕스 모듈 들고오기
 import number from "./number";
+import book from "./book";
 
 // combinReducer를 통해서 
 // 작성한 js 파일을 들고와서 객체 형태로 묶어준다
-const rootReducer = combineReducers({number});
+const rootReducer = combineReducers({number,book});
 
 // export default를 통해서 
 // 이름을 그대로 사용할수 있게 내보내준다
