@@ -8,6 +8,7 @@
 import {Provider} from 'react-redux'
 // 리덕스 프로바이더 안에 넣어줄 store를 생성할 createStore추가
 import { createStore } from 'redux';
+import BookBox from './BookBox';
 import rootReducer from './modules';
 import NumberBox from './NumberBox';
 
@@ -21,6 +22,7 @@ const StoreIndex = () => {
             <Provider store={store}>
                 {/**Provider의 자식들이 사용할수 있다 */}
                 <NumberBox />
+                <BookBox />
             </Provider>
         </div>
      );
