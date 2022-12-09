@@ -11,7 +11,8 @@ import { createStore } from 'redux';
 import rootReducer from './modules';
 import NumberBox from './NumberBox';
 
-// createStore를 이용하여 store 생성 - 작성한 js내용을 연결
+// createStore를 이용하여 store 생성
+// - 작성한 js내용을 연결 : index.js
 const store = createStore(rootReducer);
 const StoreIndex = () => {
     return ( 

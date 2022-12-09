@@ -16,11 +16,24 @@ function number(state=initalState, action) {
             // ...(스프레드 연산자)를 통해서 그대로 들고옴
             // 이때 접근하는 state는 
             // 현재 number.js에서 작성한 initalState이다
-            return {...state, number : state.number +1 }
+            return {...state, number : state.number +1 };
+        case "setNumber":
+            // 값을 받아와서 그 내용을 수정하는 것
+            // 값을 받아오는 공간 : action.payload를 통해서 값 전달
+            return {...state, number : action.payload}
         default :
             return state;
     }
 }
+
+// 액션 함수 : {type:"리듀서이름"}을 return 해서 사용하는 함수
+// 다른 js, jsx 사용을 하게됨 > export를 통해서 내보내줌
+export const increase = ()=>({type:"increase"});
+// 값을 가져와서 사용해 줄때는, 매개변수로 값을 가져와서 사용
+export const setNumber = (num)=>(
+        {type:"setNumber", payload : num}
+    );
+
 
 // 리듀서함수 number를 modules/index.js에 연결하기 위해 내보내줌
 export default number;
