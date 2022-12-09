@@ -10,6 +10,8 @@ import Board from './Board';
 import BoardPage from './BoardPage';
 import Error from './Error';
 import Home from './Home';
+import LinkState from './LinkState';
+import LocationState from './LocationState';
 
 const RootIndex = () => {
     return ( 
@@ -31,6 +33,8 @@ const RootIndex = () => {
                      */}
                     <Route index element={<AboutMain/>}></Route>
                 </Route>
+                <Route path='/link' element={<LinkState />}></Route>
+                <Route path='/location' element={<LocationState />}></Route>
                 <Route path='*' element={<Error />}></Route>
             </Routes>
 
@@ -52,7 +56,6 @@ const RootIndex = () => {
                      */}
                     <Route path='/board/:id' element={<BoardPage name="게시판" />}></Route>
                     <Route path='/board/about' element={<About />}></Route>
-                     
                 </Route>
             </Routes>
         </BrowserRouter>
