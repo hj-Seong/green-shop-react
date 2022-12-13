@@ -8,6 +8,10 @@ const initalState = {
 // 리듀서 작성
 /** setTitle 을 작성하여 payload로 값이 들어왔을때
  * 그 값으로 title을 수정하는 case 작성
+ * 
+ * pay를 수정하는 setPay를 작성하여 
+ * payload로 값이 들어왔을 때 pay값 수정
+ * 
  */
 function book (state = initalState, action) {
     switch (action.type) {

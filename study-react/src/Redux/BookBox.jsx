@@ -6,7 +6,7 @@ const BookBox = () => {
     const [input, setInput] = useState("");
 
     //useSelector를 이용해서 값을 가져오기
-    const book = useSelector((state)=>(state.book));
+    const book = useSelector((state)=>(state.booktest));
 
     //useDispatch를 이용해서 dispatch 가져오기
     const dispatch = useDispatch();

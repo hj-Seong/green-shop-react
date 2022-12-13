@@ -11,7 +11,7 @@ import book from "./book";
 
 // combinReducer를 통해서 
 // 작성한 js 파일을 들고와서 객체 형태로 묶어준다
-const rootReducer = combineReducers({number,book});
+const rootReducer = combineReducers({number, booktest : book});
 
 // export default를 통해서 
 // 이름을 그대로 사용할수 있게 내보내준다
