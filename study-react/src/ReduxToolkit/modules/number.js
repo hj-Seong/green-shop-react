@@ -17,11 +17,14 @@ const numberSlice = createSlice({
             // >> 값 전체가 바뀌는 것을 막기위해서, ... 스프레드 연산자 사용
             // toolkit을 사용하면 직접 접근해서 바꿀수 있다.
             state.num += 1;
-        }
+        },
+        decrease : (state) => { state.num -= 1},
+        // 값을 외부에서 들고오싶을때, action.payload를 통해서 가져옴
+        setNum : (state, action)=>{ state.num = action.payload}
     }
 })
 
 // 사용할 액션 함수 내보내기 - numberSlice에서 가져옴
-export const {increase} = numberSlice.actions;
+export const {increase, decrease, setNum } = numberSlice.actions;
 // 사용할 리듀서 내보내기 - numberSlice에서 가져옴
 export default numberSlice.reducer
