@@ -8,16 +8,19 @@
  */
 // 리액트에서 리덕스를 사용하기위해 프로바이더를 가져옴
 import { Provider } from 'react-redux'
+
 // 리덕스를 사용할때는 createStore를 통해서 store생성
 // > 리덕스 툴킷을 사용하면, js파일에서 store를 내보내서 가져옴
 // *store.js 작성한 이후에 추가
 import store from './modules/store';
+
 import NumberBox from './NumberBox';
+import BookBox from './BookBox';
 
 const ReduxToolkitIndex = () => {
     return ( 
         <Provider store={store}>
-            <NumberBox />
+            <BookBox />
         </Provider>
      );
 }
