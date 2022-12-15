@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useState } from "react";
 
 const Home = () => {
@@ -38,18 +38,22 @@ const Home = () => {
 
     // 이 함수를 고정할 수 있는 방법 : useCallback, useMemo
     // return값을 고정 : useMemo - return 값 고정
-    const printWord = () => {
+    // useMemo를 사용했을때, 변수 안에 들어가는 것 = return값
+    const printWord = useMemo( () => {
         const randomnum = Math.floor(Math.random()*words.length);
         return words[randomnum];
-    }
-
+    }, [] )
+    
     return ( 
         <div>
             {/** 현재 시간 출력 */}
             <h1>{ printClock() }</h1>
             {/** 배열안에 있는 명언 중 하나 출력 */}
-            <p>{printWord().text}</p>
-            <p>{printWord().author}</p>
+            {/** useMemo를 사용했을 경우, 
+             * 그 함수의 return값이 변수 안에 들어가게된다. 
+             * 사용할 때 변수이름으로만 사용 */}
+            <p>{printWord.text}</p>
+            <p>{printWord.author}</p>
         </div>
      );
 }
