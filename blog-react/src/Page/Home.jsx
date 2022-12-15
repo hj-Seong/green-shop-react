@@ -103,10 +103,14 @@ const Home = () => {
             {
               imageList.map((image)=>( 
                 <div>
-                <img 
-                  style={{width:"100%"}} 
-                  src={require(`../img/${image}`)} 
-                  alt="" />
+                <div 
+                  style={{
+                    width:"100%", 
+                    height:"1000px",
+                    backgroundImage : 'url('+require("../img/"+image)+')',
+                    backgroundSize : "cover"
+                  }} >
+                  </div>
                 </div>
               ))
             }
