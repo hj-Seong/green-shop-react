@@ -1,6 +1,9 @@
+import '../css/Home.css'
+
 import { useEffect, useMemo } from "react";
 import { useState } from "react";
 import Slider from "react-slick";
+
 
 const Home = () => {
   // 시계 출력
@@ -80,18 +83,11 @@ const Home = () => {
 
   return (
     <div>
-      {/** 현재 시간 출력 */}
-      <h1>{printClock()}</h1>
-      {/** 배열안에 있는 명언 중 하나 출력 */}
-      {/** useMemo를 사용했을 경우,
-       * 그 함수의 return값이 변수 안에 들어가게된다.
-       * 사용할 때 변수이름으로만 사용 */}
-      <p>{printWord.text}</p>
-      <p>{printWord.author}</p>
+
+
 
       {/** 슬릭화면 출력 */}
       <div>
-        <h2> Single Item</h2>
         <Slider {...settings}>
           <div>
             {/** sldier는 내용이 커지면 다음 페이지에 넘어간다 
@@ -99,14 +95,14 @@ const Home = () => {
             {/** 이미지를 주소로 바로접근할수 없기 때문에 require로 접근 */}
             <img style={{width:"100%"}} src={require(`../img/background_1.jpg`)} alt="" />
           </div>
-            {/** map을 사용해서 출력 - 배열 */}
+          {/** map을 사용해서 출력 - 배열 */}
             {
               imageList.map((image)=>( 
                 <div>
                 <div 
                   style={{
                     width:"100%", 
-                    height:"1000px",
+                    height:"100vh",
                     backgroundImage : 'url('+require("../img/"+image)+')',
                     backgroundSize : "cover"
                   }} >
@@ -114,12 +110,21 @@ const Home = () => {
                 </div>
               ))
             }
-
-          <div>
-            <h3>3</h3>
-          </div>
         </Slider>
       </div>
+
+
+      <div className="Home_main">
+        {/** 현재 시간 출력 */}
+        <h1>{printClock()}</h1>
+        {/** 배열안에 있는 명언 중 하나 출력 */}
+        {/** useMemo를 사용했을 경우,
+         * 그 함수의 return값이 변수 안에 들어가게된다.
+         * 사용할 때 변수이름으로만 사용 */}
+        <p>{printWord.text}</p>
+        <p>{printWord.author}</p>
+      </div>
+
     </div>
   );
 };
