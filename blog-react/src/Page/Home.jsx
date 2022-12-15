@@ -68,7 +68,7 @@ const Home = () => {
     arrows : false,
     infinite: true,
     autoplay : true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
@@ -83,18 +83,18 @@ const Home = () => {
 
   return (
     <div>
-
-
-
       {/** 슬릭화면 출력 */}
       <div>
         <Slider {...settings}>
-          <div>
+          
             {/** sldier는 내용이 커지면 다음 페이지에 넘어간다 
              * 크기를 조절해서 사용*/}
             {/** 이미지를 주소로 바로접근할수 없기 때문에 require로 접근 */}
+          {/**
+          <div>
             <img style={{width:"100%"}} src={require(`../img/background_1.jpg`)} alt="" />
           </div>
+           */}
           {/** map을 사용해서 출력 - 배열 */}
             {
               imageList.map((image)=>( 
@@ -102,7 +102,7 @@ const Home = () => {
                 <div 
                   style={{
                     width:"100%", 
-                    height:"100vh",
+                    height:"99vh",
                     backgroundImage : 'url('+require("../img/"+image)+')',
                     backgroundSize : "cover"
                   }} >
