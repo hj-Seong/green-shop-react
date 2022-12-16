@@ -3,6 +3,7 @@ import '../css/Home.css'
 import { useEffect, useMemo } from "react";
 import { useState } from "react";
 import Slider from "react-slick";
+import HomeLink from '../components/HomeLink';
 
 
 const Home = () => {
@@ -124,6 +125,8 @@ const Home = () => {
         <p>{printWord.text}</p>
         <p>{printWord.author}</p>
       </div>
+
+      <HomeLink />
 
     </div>
   );

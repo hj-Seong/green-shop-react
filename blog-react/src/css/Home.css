@@ -27,3 +27,17 @@
 .Home_main>p+p{
     color: darkblue;
 }
+
+.Home_Link {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    padding-top: 20px;
+}
+.Home_Link a {
+    text-decoration: none;
+    color: black;
+    margin: 0px 10px;
+}
