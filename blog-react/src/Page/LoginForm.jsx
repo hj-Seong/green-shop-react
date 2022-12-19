@@ -26,7 +26,8 @@ const LoginForm = () => {
       .then((userCredential) => {
         // Signed in 회원가입성공
         const user = userCredential.user;
-        console.log(user)
+        console.log(user);
+        dispatch(userLogin(user))
         navigate('/');
       })
       .catch((error) => {
@@ -85,7 +86,8 @@ const LoginForm = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user)
+        console.log(user);
+        dispatch(userLogin(user));
         navigate('/');
 
       }).catch((error) => {

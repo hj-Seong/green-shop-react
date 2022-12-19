@@ -1,10 +1,13 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom'
+import { userLogout } from '../modules/currentUser';
+
 const HomeLink = () => {
     // 로그인 유무를 확인하기위한 변수
     const login = false;
     // 리덕스의 state값을 가져와서 확인
     const user = useSelector((state)=>(state.currentUser));
+    const dispatch = useDispatch();
 
     return ( 
         <div className='Home_Link'>
@@ -17,7 +20,7 @@ const HomeLink = () => {
                     <Link>방명록</Link>
                     <Link>관리자페이지</Link>
                     <Link>마이페이지</Link>
-                    <Link>로그아웃</Link>
+                    <Link onClick={()=>{ dispatch(userLogout())}}>로그아웃</Link>
                 </div>)
                 :
                 /** 로그인되어있지 않을때 보여지는 링크 */
