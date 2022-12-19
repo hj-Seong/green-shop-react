@@ -1,12 +1,15 @@
+import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom'
 const HomeLink = () => {
     // 로그인 유무를 확인하기위한 변수
     const login = false;
+    // 리덕스의 state값을 가져와서 확인
+    const user = useSelector((state)=>(state.currentUser));
 
     return ( 
         <div className='Home_Link'>
             {
-                login ? 
+                user ? 
                 /**로그인했을때 보이는 화면, 
                  * 단 관리자페이지는 홈페이지주인만보이기 */
                 (<div>

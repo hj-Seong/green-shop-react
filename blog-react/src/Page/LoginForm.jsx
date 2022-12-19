@@ -4,8 +4,13 @@ import Form from "react-bootstrap/Form";
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../modules/currentUser";
 
 const LoginForm = () => {
+  // 리덕스의 리듀서를 사용하기위한 디스패치
+  const dispatch = useDispatch();
+
   // 페이지를 이동하기위한 navigate();
   const navigate = useNavigate();
 
@@ -45,6 +50,7 @@ const LoginForm = () => {
         // Signed in 
         const user = userCredential.user;
         console.log(user)
+        dispatch(userLogin(user));
         navigate('/');
       })
       .catch((error) => {
