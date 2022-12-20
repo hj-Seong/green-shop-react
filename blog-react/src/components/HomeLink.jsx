@@ -27,7 +27,7 @@ const HomeLink = () => {
                 (
                     <div>
                         <Link>포스트</Link>
-                        <Link to='/gest'>방명록</Link>
+                        <Link to='/guest'>방명록</Link>
                         <Link to='/loginform'>로그인</Link>
                     </div>
                 )
