@@ -1,22 +1,72 @@
 import { useState } from "react";
+import {useDispatch, useSelector} from "react-redux"
+import { addGuest } from "../modules/guest";
+
+import { Button, Card, FloatingLabel, Form, ListGroup} from "react-bootstrap"
 
 const Guest = () => {
+    // 리덕스를 이용하여 guest의 값 가져오기
+    const guestList = useSelector((state)=>(state.guest));
+    const dispatch = useDispatch();
+
     const [name, setName] = useState("익명");
     const [text, setText] = useState();
+    
 
     return ( 
         <div>
             <h3>글을 쓰는 공간</h3>
-            <label htmlFor="">이름</label>
-            <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}}/><br/>
-            <label htmlFor="">작성할 내용</label>
-            <textarea onChange={(e)=>{setText(e.target.value)}}></textarea>
+            <FloatingLabel
+                controlId="floatingInput"
+                label="이름"
+                className="mb-3"
+            >
+                <Form.Control 
+                    type="text" 
+                    value={name}  
+                    placeholder="name" 
+                    onChange={(e)=>{setName(e.target.value)}} />
+            </FloatingLabel>
+
+            <FloatingLabel controlId="floatingTextarea2" label="작성할 내용">
+                <Form.Control
+                as="textarea"
+                placeholder="Leave a comment here"
+                style={{ height: '100px' }}
+                onChange={(e)=>{setText(e.target.value)}}
+                />
+            </FloatingLabel>
+            
             {/** 버튼을 클릭했을때 리듀서에 내용을 추가 */}
-            <button >작성</button>
+            <Button onClick={()=>{ dispatch(addGuest({name:name, text:text}))}}>작성</Button>
             <hr />
+
             <h3>글 쓴 내용을 출력하는 공간</h3>
+            <Card style={{ width: '18rem' }}>
+            <ListGroup variant="flush">
+                {
+                    guestList.map((guest)=>(<GuestText guest={guest} />))
+                }
+            </ListGroup>
+            </Card>
+            {
+                guestList.map((guest)=>(
+                    <h3>{guest.name}</h3>
+                ))
+            }
         </div>
      );
 }
  
 export default Guest;
+
+// 방명록 내용을 하나씩 출력할 공간
+// ListGroup.Item에 출력 - props값을 받아와서 출력
+const GuestText = ({guest}) => {
+    return (
+        <ListGroup.Item>
+            <b>{guest.name}</b><br/>
+            {guest.text}
+        </ListGroup.Item>
+    );
+}
