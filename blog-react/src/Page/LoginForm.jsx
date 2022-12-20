@@ -108,10 +108,10 @@ const LoginForm = () => {
 
   return (
     <div>
-      <Container>
+      <Container className="mt-5">
         <Row>
           <Col>
-            <Button variant="outline-primary" onClick={emailCreate} className='create_button'>아래의 이메일과 비밀번호로 회원가입</Button>
+            <Button variant="link" onClick={emailCreate} className='create_button'>아래의 정보로 회원가입</Button>
           </Col>
         </Row>
         <Row>
@@ -130,11 +130,15 @@ const LoginForm = () => {
                 <Form.Label>비밀번호</Form.Label>
                 <Form.Control type="password" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}} />
               </Form.Group>
-              <Button variant="primary" type="submit" className="my_margin_auto">
-                로그인
-              </Button>
+
             </Form>
-            <Button variant="outline-danger" onClick={googleLogin}>구글로 로그인</Button>
+            <div className="my_center"> 
+              <Button variant="primary" type="submit">로그인</Button>
+              <hr />
+              <p className="hint_text"> 소셜아이디로 로그인</p>
+              <Button variant="outline-danger" onClick={googleLogin}>구글로 로그인</Button>
+            </div>
+
           </Col>
         </Row>
       </Container>

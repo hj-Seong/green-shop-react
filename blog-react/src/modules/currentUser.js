@@ -1,6 +1,6 @@
 // 초기값
 // 로그인여부를 알아보기 위해 초기값을 null
-// 안에 [], {}를 넣어두면 값이 있다고 판다
+// 안에 [], {}를 넣어두면 값이 있다고 판단
 /**
  * 
  */
@@ -21,7 +21,10 @@ function currentUser( state=initalState, action) {
             // 그 값을 통째로 넣어준다면, 받아온 값을 그대로 넣어주면 된다
             // > 그 값을 그대로 넣어주기 보다는 
             // 그 안에 있는 값중에 필요한것만 골라서 넣는게 좋다
-            return action.payload
+            
+            // ... 스프레드 연산자를 이용하여 
+            // 객체안의 속성값들을 유지할수있도록 가져온다
+            return action.payload;
         case "userLogout": 
             // 로그아웃을했을 때 그 값이 null값으로 들어감 
             return null;
