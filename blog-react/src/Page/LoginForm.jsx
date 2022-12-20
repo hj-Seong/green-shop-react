@@ -130,14 +130,14 @@ const LoginForm = () => {
                 <Form.Label>비밀번호</Form.Label>
                 <Form.Control type="password" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}} />
               </Form.Group>
-
+              <div className="my_center"> 
+                <Button variant="primary" type="submit">로그인</Button>
+                <hr />
+                <p className="hint_text"> 소셜아이디로 로그인</p>
+                <Button variant="outline-danger" onClick={googleLogin}>구글로 로그인</Button>
+              </div>
             </Form>
-            <div className="my_center"> 
-              <Button variant="primary" type="submit">로그인</Button>
-              <hr />
-              <p className="hint_text"> 소셜아이디로 로그인</p>
-              <Button variant="outline-danger" onClick={googleLogin}>구글로 로그인</Button>
-            </div>
+
 
           </Col>
         </Row>
