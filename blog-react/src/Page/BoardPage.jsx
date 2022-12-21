@@ -33,6 +33,10 @@ const BoardPrint = ({board}) =>{
         dispatch(deleteBoard(id));
         navigate('/board')
     }
+    // 수정 함수 
+    const toModifyBoard = (board)=>{
+        navigate('/board/modifyform',{state:board})
+    }
 
     return (
         <Container>
@@ -42,7 +46,7 @@ const BoardPrint = ({board}) =>{
                 </Col>
                 <Col><h2>{board.title}</h2></Col>
                 <Col>
-                    <Button >수정</Button>
+                    <Button onClick={()=>{toModifyBoard(board)}}>수정</Button>
                     <Button onClick={()=>{onDeleteBoard(board.boardId)}}>삭제</Button>
                 </Col>
 

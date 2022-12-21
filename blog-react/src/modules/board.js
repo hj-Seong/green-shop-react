@@ -32,6 +32,16 @@ function board (state = initalState, action) {
             // 새로운 배열을 만듦 : filter
             const newboardList = state.filter((board)=>( board.boardId != action.payload ));
             return newboardList;
+        case "modifyBoard":
+            // 수정된 board값을 들고와서, 
+            // 그 값을 통채로 리스트에 바꿔서 넣어줌
+            // 배열의 갯수가 바뀌지않고, 그 안에 값만 수정 : map 
+            // 수정할 id 값을 비교를 해서, board값을 바꿔서 넣어줌
+            const modifyboard = state.map(
+                (board) => 
+                (board.boardId == action.payload.boardId? action.payload : board)
+                )
+            return modifyboard;
         default :
             return state;
     }
@@ -40,5 +50,8 @@ function board (state = initalState, action) {
 // 액션함수
 export const deleteBoard 
         = (id) => ({type:"deleteBoard", payload:id});
+export const modifyBoard
+        = (board) =>({type:"modifyBoard", payload:board})
+
 
 export default board;

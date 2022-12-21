@@ -1,16 +1,44 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { modifyBoard } from "../modules/board";
 
 const BoardWriteFrom = () => {
+    //navigate를 통해서 값을 보내주고 state에 사용
+    const location = useLocation();
+    const [board, setBoard] = useState(location.state);
+
+    // 리덕스의 dispatch
+    const dispatch = useDispatch();
+    // 라우터의 navigate
+    const navigate = useNavigate();
+
+    // 값을 수정했을때 board의 내용을 수정하는 함수
+    const onChange = (e) => {
+        setBoard({...board, [e.target.name]: e.target.value})
+    }
+    // 수정완료 버튼을 눌렸을 실행하는 함수
+    const onModifyBoard = () => {
+        dispatch(modifyBoard(board));
+        navigate('/board/'+board.boardId);
+    }
+
     return ( 
         <Container>
             <Row>
                 <Col xs={1} >
                     {board.boardId}
                 </Col>
-                <Col><h2>{board.title}</h2></Col>
                 <Col>
-                    <Button>수정</Button>
-                    <Button onClick={()=>{onDeleteBoard(board.boardId)}}>삭제</Button>
+                    <input
+                        name="title" 
+                        value={board.title} 
+                        onChange={(e)=>{onChange(e)}}>
+                    </input>
+                </Col>
+                <Col>
+                    <Button onClick={onModifyBoard}>수정완료</Button>
                 </Col>
 
             </Row>
@@ -18,11 +46,13 @@ const BoardWriteFrom = () => {
                 <Col>{board.userEmail}</Col>
             </Row>
             <Row className="my-4">
-                <Col><h4>{board.content}</h4></Col>
-            </Row>
-            <Row>
-                <Col><span>조회수 {board.view}</span></Col>
-                <Col><span>좋아요 {board.like}</span></Col>
+                <Col>
+                    <textarea 
+                        name="content"
+                        onChange={(e)=>{onChange(e)}}>
+                        {board.content}
+                    </textarea>
+                </Col>
             </Row>
 
         </Container>
