@@ -7,7 +7,8 @@ const initalState = [
         title : "첫 게시물입니다",
         content : "문자만들어갈수 있는 공간입니다",
         view : 0,
-        like : 1 // 좋아요를 누른 사람의 리스트
+        like : 1 
+        // 좋아요를 누른 사람의 리스트
     },
     {
         boardId : 2, 
@@ -15,7 +16,8 @@ const initalState = [
         title : "두번째 게시글",
         content : "두번째 글입니다",
         view : 0,
-        like : 1 // 좋아요를 누른 사람의 리스트
+        like : 1 
+        // 좋아요를 누른 사람의 리스트
     }
 ]
 // board가 증가할때마다 증가되는 아이디
@@ -25,8 +27,18 @@ let boardId = 3;
 //리듀서 함수
 function board (state = initalState, action) {
     switch (action.type) {
+        case "deleteBoard":
+            // 현재 게시물의 id 를 찾아서, 그 id를 제외하고
+            // 새로운 배열을 만듦 : filter
+            const newboardList = state.filter((board)=>( board.boardId != action.payload ));
+            return newboardList;
         default :
             return state;
     }
 }
+
+// 액션함수
+export const deleteBoard 
+        = (id) => ({type:"deleteBoard", payload:id});
+
 export default board;
