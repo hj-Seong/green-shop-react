@@ -56,7 +56,7 @@ const Guest = () => {
       <Card style={{ width: "100%" }}>
         <ListGroup variant="flush">
           {guestList.map((guest) => (
-            <GuestText guest={guest} />
+            <GuestText key={guest.guestId} guest={guest} />
           ))}
         </ListGroup>
       </Card>
