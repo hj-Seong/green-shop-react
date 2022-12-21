@@ -8,6 +8,7 @@ import Home from './Page/Home';
 import LoginForm from './Page/LoginForm';
 import Guest from './Page/Guest';
 import Board from './Page/Board';
+import BoardPage from './Page/BoardPage';
 
 // Routes와 Route를 이용하여 화면 관리
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/loginform' element={<LoginForm />}></Route>
         <Route path='/guest' element={<Guest />}></Route>
         <Route path='/board' element={<Board />}></Route>
+        <Route path='/board/:id' element={<BoardPage />}></Route>
       </Routes>
     </div>
   );
