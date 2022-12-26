@@ -37,6 +37,12 @@ export default BoardPage;
 const BoardPrint = ({board}) =>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    // comments값 가져오기
+    const comments = useSelector((state)=>state.comments)
+    const boardComments = comments.filter(
+        (comment)=>(comment.boardId == board.boardId)
+        );
     
     // 삭제 함수
     const onDeleteBoard = (id) => {
@@ -70,6 +76,19 @@ const BoardPrint = ({board}) =>{
             <Row>
                 <Col><span>조회수 {board.view}</span></Col>
                 <Col><span>좋아요 {board.like}</span></Col>
+            </Row>
+            <hr />
+            <Row>
+                {
+                    /** 코멘트에서 boardId가 같은 것만 출력 */
+                    /** 처음 값이 null과 undefined일때 그대로 사용해도 ok 
+                     * 처음값이 배열일 경우, length을 이용하여 확인
+                     * 처음값이 객체일 경우, 속성값으로 들어가서 확인
+                    */
+                    boardComments.length > 0
+                    ? boardComments.map((comment)=>( <div>{comment.text}</div>)) 
+                    : <p>코멘트가 없습니다</p>
+                }
             </Row>
 
         </Container>

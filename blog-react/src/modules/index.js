@@ -5,8 +5,9 @@ import {combineReducers} from "redux"
 import currentUser from "./currentUser" 
 import guest from "./guest"
 import board from "./board"
+import comments from "./comments"
 
 const rootReducer = combineReducers({
-    currentUser,guest, board
+    currentUser,guest, board, comments
 })
 export default rootReducer
