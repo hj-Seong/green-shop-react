@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { deleteBoard } from "../modules/board";
+import { deleteBoard, updateView } from "../modules/board";
 
 const BoardPage = () => {
     // params을 통해서 board의 boardId값 전달
@@ -14,6 +15,15 @@ const BoardPage = () => {
 
     // useSeletor를 이용해서 가져올때 바로 find 사용하기.
     const boardFind = useSelector((state)=>(state.board.find((board)=>(board.boardId== id))) )
+    const dispatch = useDispatch();
+
+    // 화면이 실행되자마자 조회수를 1올리기 위함
+    useEffect(()=>{
+        // 리덕스를 통해서 id값을 전달하여 
+        // 그 id 값을 가진 board값의 view를 올림
+        dispatch(updateView(id))
+    },[])
+
 
     return ( 
         <div>

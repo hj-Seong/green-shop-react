@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { modifyBoard } from "../modules/board";
+import { addBoard, modifyBoard } from "../modules/board";
 
 const BoardAddFrom = () => {
     // 로그인정보 중에서 이메일값
@@ -22,10 +22,10 @@ const BoardAddFrom = () => {
     const onChange = (e) => {
         setBoard({...board, [e.target.name]: e.target.value})
     }
-    // 수정완료 버튼을 눌렸을 실행하는 함수
-    const onModifyBoard = () => {
-        dispatch(modifyBoard(board));
-        navigate('/board/'+board.boardId);
+    // 글쓰기 완료 버튼을 눌렸을 실행하는 함수
+    const onAddBoard = () => {
+        dispatch(addBoard(board));
+        navigate('/board');
     }
 
     return ( 
@@ -56,8 +56,8 @@ const BoardAddFrom = () => {
             </Row>
             <Row>
                 <Col>
-                    <Button >취소</Button>
-                    <Button onClick={onModifyBoard}>글쓰기완료</Button>
+                    <Button onClick={()=>{navigate('/board')}}>취소</Button>
+                    <Button onClick={onAddBoard}>글쓰기완료</Button>
                 </Col>
             </Row>
         </Container>

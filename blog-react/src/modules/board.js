@@ -42,6 +42,25 @@ function board (state = initalState, action) {
                 (board.boardId == action.payload.boardId? action.payload : board)
                 )
             return modifyboard;
+        case "addBoard":
+            // 새로운 보드값을 받아와서, boardId값을 부여한 후에 추가
+            // action.payload를 통해서 - userEmail, title, context
+            // 리덕스에서 넣어주는 값 - boardId, view =0, like=0,
+            const newboard = {
+                ...action.payload,
+                boardId : boardId,
+                view : 0,
+                like : 0
+            }
+            boardId++;
+            return state.concat(newboard);
+        case "updateView":
+            console.log("실행", action.payload)
+            return state.map(
+                    (board)=>(
+                        board.boardId == action.payload 
+                        ? {...board, view : board.view+1}
+                        : board));
         default :
             return state;
     }
@@ -51,7 +70,11 @@ function board (state = initalState, action) {
 export const deleteBoard 
         = (id) => ({type:"deleteBoard", payload:id});
 export const modifyBoard
-        = (board) =>({type:"modifyBoard", payload:board})
+        = (board) =>({type:"modifyBoard", payload:board});
+export const addBoard
+        = (board) => ({type:"addBoard", payload:board})
+export const updateView 
+        = (id) => ({type:"updateView", payload:id})
 
 
 export default board;
