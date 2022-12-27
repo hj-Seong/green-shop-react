@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteBoard, updateView } from "../modules/board";
 import { addComment } from "../modules/comments";
+import { addLikeBoard } from "../modules/userInfoList";
 
 const BoardPage = () => {
   // params을 통해서 board의 boardId값 전달
@@ -81,6 +82,19 @@ const BoardPrint = ({ board }) => {
     navigate("/board/modifyform", { state: board });
   };
 
+  // 좋아요 함수 
+  const onAddLike = () => {
+    // 전달값 : userEmail, boardId, title
+    // **로그인되지않았다면, dispatch가 되지않게 막기
+    const boardlike = {
+      userEmail: user.email, 
+      boardId :board.boardId, 
+      title : board.title
+    }
+    dispatch(addLikeBoard(boardlike));
+    console.log(boardlike)
+  }
+
   return (
     <Container>
       <Row>
@@ -114,7 +128,7 @@ const BoardPrint = ({ board }) => {
           <span>조회수 {board.view}</span>
         </Col>
         <Col>
-          <span>좋아요 {board.like}</span>
+          <span onClick={onAddLike}>좋아요 {board.like}</span>
         </Col>
       </Row>
       <hr />

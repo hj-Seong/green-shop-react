@@ -19,7 +19,35 @@ function userInfoList( state = initalState, action) {
                 userEmail : action.payload,
                 like : []
             }
-            return state.concat(newUser); 
+            return state.concat(newUser);
+        case "addLikeBoard":
+            // board의 좋아요 버튼을 눌렀을때 값 확인
+            // 1. userInfoList 의 like > boardId, title - 배열
+            // 2. board의 like 값이 연결 > userEmail - 배열
+
+            const newAddLike = {
+                boardId : action.payload.boardId,
+                title : action.payload.title
+            }
+
+            // userEmail이 동일한 것으로 연결 
+            // 배열의 값을 수정
+            return state.map((userInfo)=>(
+                userInfo.userEmail == action.payload.userEmail
+                ? 
+                { 
+                    ...userInfo, 
+                    // like 속성은 userInfo.like에서 값을 찾아서
+                    // 값이 있다면 이전 값을 넣고, 
+                    // 없다면 추가한 값을 넣도록 삼항연산자 사용
+                    like : userInfo.like.find(
+                        (boardLike)=>boardLike.boardId == action.payload.boardId
+                        )
+                        ? userInfo.like
+                        : userInfo.like.concat(newAddLike)
+                }
+                : userInfo
+                ))
         default:
             return state;
     }
@@ -28,7 +56,8 @@ function userInfoList( state = initalState, action) {
 // 액션함수 내보내기
 export const addUserInfo 
     = (email) => ({type:"addUserInfo", payload : email})
-
+export const addLikeBoard
+    = (likeboard) => ({type:"addLikeBoard",payload:likeboard })
 
 // 리듀서 내보내기
 export default userInfoList;
