@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Button, Card, Col, Container, FloatingLabel, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { deleteBoard, updateView } from "../modules/board";
+import { addLikeUser, deleteBoard, updateView } from "../modules/board";
 import { addComment } from "../modules/comments";
 import { addLikeBoard } from "../modules/userInfoList";
 
@@ -84,15 +84,23 @@ const BoardPrint = ({ board }) => {
 
   // 좋아요 함수 
   const onAddLike = () => {
-    // 전달값 : userEmail, boardId, title
     // **로그인되지않았다면, dispatch가 되지않게 막기
+    if (!user) {
+      return alert("좋아요는 로그인 후에 할수 있습니다")
+    }
+    // 전달값 : userEmail, boardId, title
+    
     const boardlike = {
       userEmail: user.email, 
       boardId :board.boardId, 
       title : board.title
     }
     dispatch(addLikeBoard(boardlike));
-    console.log(boardlike)
+    const userlike = {
+      boardId : board.boardId,
+      userEmail: user.email
+    }
+    dispatch(addLikeUser(userlike));
   }
 
   return (
@@ -128,7 +136,7 @@ const BoardPrint = ({ board }) => {
           <span>조회수 {board.view}</span>
         </Col>
         <Col>
-          <span onClick={onAddLike}>좋아요 {board.like}</span>
+          <span onClick={onAddLike}>좋아요 {board.like.length}</span>
         </Col>
       </Row>
       <hr />

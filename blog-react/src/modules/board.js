@@ -7,7 +7,7 @@ const initalState = [
         title : "첫 게시물입니다",
         content : "문자만들어갈수 있는 공간입니다",
         view : 0,
-        like : 1 
+        like : [] 
         // 좋아요를 누른 사람의 리스트
     },
     {
@@ -16,7 +16,7 @@ const initalState = [
         title : "두번째 게시글",
         content : "두번째 글입니다",
         view : 0,
-        like : 1 
+        like : []
         // 좋아요를 누른 사람의 리스트
     }
 ]
@@ -50,7 +50,7 @@ function board (state = initalState, action) {
                 ...action.payload,
                 boardId : boardId,
                 view : 0,
-                like : 0
+                like : []
             }
             boardId++;
             return state.concat(newboard);
@@ -61,6 +61,32 @@ function board (state = initalState, action) {
                         board.boardId == action.payload 
                         ? {...board, view : board.view+1}
                         : board));
+        
+        case "addLikeUser":
+            // board의 좋아요 버튼을 눌렀을때 값 확인
+            // 1. userInfoList 의 like > boardId, title - 배열
+            // 2. board의 like 값이 연결 > userEmail - 배열
+
+            const newAddLike = action.payload.userEmail;
+
+            // boardId가 동일한 것으로 연결 
+            // 배열의 값을 수정
+            return state.map((board)=>(
+                board.boardId == action.payload.boardId
+                ? 
+                { 
+                    ...board, 
+                    // like 속성은 board.like에서 값을 찾아서
+                    // 값이 있다면 이전 값을 넣고, 
+                    // 없다면 추가한 값을 넣도록 삼항연산자 사용
+                    like : board.like.find(
+                        (boardLike)=>boardLike == action.payload.userEmail
+                        )
+                        ? board.like
+                        : board.like.concat(newAddLike)
+                }
+                : board
+                ))
         default :
             return state;
     }
@@ -75,6 +101,8 @@ export const addBoard
         = (board) => ({type:"addBoard", payload:board})
 export const updateView 
         = (id) => ({type:"updateView", payload:id})
+export const addLikeUser 
+        = (likeuser) =>({type:"addLikeUser", payload:likeuser})
 
 
 export default board;
