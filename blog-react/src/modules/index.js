@@ -6,8 +6,10 @@ import currentUser from "./currentUser"
 import guest from "./guest"
 import board from "./board"
 import comments from "./comments"
+import userInfoList from "./userInfoList"
 
 const rootReducer = combineReducers({
-    currentUser,guest, board, comments
+    currentUser,guest, board, 
+    comments, userInfoList
 })
 export default rootReducer

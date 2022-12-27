@@ -19,7 +19,7 @@ const HomeLink = () => {
                     <Link to='/board'>포스트</Link>
                     <Link to='/guest'>방명록</Link>
                     <Link>관리자페이지</Link>
-                    <Link>마이페이지</Link>
+                    <Link to='/mypage'>마이페이지</Link>
                     <Link onClick={()=>{ dispatch(userLogout())}}>로그아웃</Link>
                 </div>)
                 :

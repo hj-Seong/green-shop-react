@@ -5,15 +5,33 @@ import Form from "react-bootstrap/Form";
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../modules/currentUser";
 
 // css 파일들고옴
 import '../css/loginForm.css'
+import { addUserInfo } from "../modules/userInfoList";
 
 const LoginForm = () => {
+  // 리덕스로 데이터를 저장했기때문에, 값이 날라감
+  // 로그인했을때 userInfo값이 있는지 확인하기위해 useInfoList
+  const userInfoList = useSelector((state)=>state.userInfoList);
+
   // 리덕스의 리듀서를 사용하기위한 디스패치
   const dispatch = useDispatch();
+
+  // 로그인했을때 userInfo 값이있는지 확인하는 함수
+  // 값이없다면 addUserInfo를 통해서 추가
+  const checkUserInfo = (email) => {
+    const checkUser = userInfoList.find((info)=>(info.userEmail == email));
+    // 값이 없다면 (undefined) 디스패치를 통해서 값 추가
+    if(!checkUser) {
+      dispatch(addUserInfo(email));
+    }
+  }
+
+
+
 
   // 페이지를 이동하기위한 navigate();
   const navigate = useNavigate();
@@ -56,6 +74,7 @@ const LoginForm = () => {
         const user = userCredential.user;
         console.log(user)
         dispatch(userLogin(user));
+        checkUserInfo(email);
         navigate('/');
       })
       .catch((error) => {
@@ -92,6 +111,7 @@ const LoginForm = () => {
         const user = result.user;
         console.log(user);
         dispatch(userLogin(user));
+        checkUserInfo(user.email)
         navigate('/');
 
       }).catch((error) => {
