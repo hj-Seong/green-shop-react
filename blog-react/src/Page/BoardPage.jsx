@@ -45,7 +45,9 @@ const BoardPrint = ({ board }) => {
   const [commentText, setCommentText] = useState("");
 
   // userEmail을 가져오기 위해서 selector 사용
-  const userEmail = useSelector((state)=>(state.currentUser.email));
+  // * user로 수정 > 로그인하지않았을때 글을 볼수 있기때문
+  // * user의 값이 null이라면 코멘트를 달 수 없게 수정
+  const user = useSelector((state)=>(state.currentUser));
 
   // commetInput에 버튼에 들어갈 함수
   const onAddComment = () => {
@@ -54,7 +56,7 @@ const BoardPrint = ({ board }) => {
     dispatch(addComment(
       {
         boardId : board.boardId,
-        userEmail : userEmail,
+        userEmail : user.email,
         text : commentText
       }
     ))
@@ -86,22 +88,18 @@ const BoardPrint = ({ board }) => {
         <Col>
           <h2>{board.title}</h2>
         </Col>
-        <Col>
-          <Button
-            onClick={() => {
-              toModifyBoard(board);
-            }}
-          >
-            수정
-          </Button>
-          <Button
-            onClick={() => {
-              onDeleteBoard(board.boardId);
-            }}
-          >
-            삭제
-          </Button>
-        </Col>
+        {
+          user && user.email === board.userEmail &&
+          <Col>
+            <Button onClick={() => {toModifyBoard(board);}}>
+              수정
+            </Button>
+            <Button onClick={() => {onDeleteBoard(board.boardId);}}>
+              삭제
+            </Button>
+          </Col>
+        }
+        
       </Row>
       <Row>
         <Col>{board.userEmail}</Col>
@@ -121,11 +119,16 @@ const BoardPrint = ({ board }) => {
       </Row>
       <hr />
       <Row>
-        <CommentInput 
-          commentText={commentText} 
-          setCommentText={setCommentText}
-          onAddComment={onAddComment}
-        />
+        {
+          user ? 
+          <CommentInput 
+            commentText={commentText} 
+            setCommentText={setCommentText}
+            onAddComment={onAddComment}
+          /> :
+          <p>로그인을 하시면 코멘트를 작성하실 수 있습니다</p>
+        }
+
       </Row>
       <Row>
         {
