@@ -43,7 +43,8 @@ function userInfoList( state = initalState, action) {
                     like : userInfo.like.find(
                         (boardLike)=>boardLike.boardId == action.payload.boardId
                         )
-                        ? userInfo.like
+                          // 값이 있다면 filter를 통해서 값을 제거한 후 추가
+                        ? userInfo.like.filter((boardLike)=>boardLike.boardId != action.payload.boardId)
                         : userInfo.like.concat(newAddLike)
                 }
                 : userInfo

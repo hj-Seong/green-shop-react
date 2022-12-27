@@ -82,7 +82,8 @@ function board (state = initalState, action) {
                     like : board.like.find(
                         (boardLike)=>boardLike == action.payload.userEmail
                         )
-                        ? board.like
+                        // 값이 있다면 filter를 통해서 값을 제거한 후 추가
+                        ? board.like.filter((boardLike)=>boardLike != action.payload.userEmail)
                         : board.like.concat(newAddLike)
                 }
                 : board
