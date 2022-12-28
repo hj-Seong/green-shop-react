@@ -15,7 +15,7 @@ const Guest = () => {
   const [text, setText] = useState();
 
   return (
-    <div className="mx-5 mt-5">
+    <div>
       {currentUser ? (
         <p>{currentUser.email}</p>
       ) : (

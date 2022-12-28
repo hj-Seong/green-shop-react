@@ -128,7 +128,7 @@ const LoginForm = () => {
 
   return (
     <div>
-      <Container className="mt-5">
+      <Container>
         <Row>
           <Col>
             <Button variant="link" onClick={emailCreate} className='create_button'>아래의 정보로 회원가입</Button>

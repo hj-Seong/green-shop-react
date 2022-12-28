@@ -1,0 +1,12 @@
+/* board 공간에서 사용할 내용*/ 
+.board-button {
+    /* 부트스트랩디자인으로 새로작성한디자인 안먹힐 경우*/
+    /* !important : 다른 css보다 우선으로 적용할수 있게 진행*/ 
+    background-color: darkorange !important; 
+    color: white;
+}
+.board-button:hover {
+    background-color: rgb(255, 81, 0);
+    color: white;
+    transition: all 0.5s;
+}

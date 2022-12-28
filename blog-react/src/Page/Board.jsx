@@ -1,6 +1,7 @@
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import '../css/board.css'
 
 const Board = () => {
     
@@ -21,9 +22,9 @@ const Board = () => {
 
   return (
   <div>
-    <div>
+    <div style={{textAlign:"end"}}>
       {
-        user && <button onClick={()=>{navigate('/board/writeform')}}>글쓰기</button> 
+        user && <Button variant="" className="board-button" onClick={()=>{navigate('/board/writeform')}}>글쓰기</Button> 
       }
     </div>
     <Table striped>

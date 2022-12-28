@@ -1,10 +1,17 @@
 import { useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { addBoard, modifyBoard } from "../modules/board";
 
+import Editor from '@toast-ui/editor';
+
+import '@toast-ui/editor/dist/toastui-editor.css';
+
 const BoardAddFrom = () => {
+    //토스트 에디터 가져옴
+    const Editor = toastui.Editor;
+
     // 로그인정보 중에서 이메일값
     const userEmail = useSelector((state)=>state.currentUser.email);
     console.log(userEmail)
@@ -32,18 +39,16 @@ const BoardAddFrom = () => {
         <Container>
             <Row>
                 <Col>
-                    <input
+                    <Form.Control
                         name="title" 
                         value={board.title} 
                         onChange={(e)=>{onChange(e)}}>
-                    </input>
+                    </Form.Control>
                 </Col>
 
 
             </Row>
-            <Row>
-                <Col>{board.userEmail}</Col>
-            </Row>
+
             <Row className="my-4">
                 <Col>
                     <textarea 
@@ -52,8 +57,14 @@ const BoardAddFrom = () => {
                         {board.content}
                     </textarea>
                 </Col>
-
             </Row>
+
+            <Row>
+                <Col>
+                    <div id="editor"></div>
+                </Col>
+            </Row>
+
             <Row>
                 <Col>
                     <Button onClick={()=>{navigate('/board')}}>취소</Button>

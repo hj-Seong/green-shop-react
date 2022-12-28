@@ -5,7 +5,10 @@ const Layout = () => {
     return ( 
         <div>
             <PageLink />
-            <Outlet/>
+            <div className="mx-5 mt-3">
+                <Outlet />
+            </div>
+            
         </div>
      );
 }
