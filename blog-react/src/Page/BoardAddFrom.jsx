@@ -11,29 +11,6 @@ import { useEffect } from "react";
 import { useRef } from "react";
 
 const BoardAddFrom = () => {
-  //토스트 에디터 가져옴
-  //const Editor = toastui.Editor;
-  useEffect(() => {
-    const editor = new Editor({
-      el: document.querySelector("#editor"),
-      height: "500px",
-      initialEditType :"wysiwyg",
-      hideModeSwitch: true,
-      initialValue : "글을 작성해주세요"
-    });
-
-    editor.getMarkdown();
-  }, []);
-
-  // toastUI에서 값을 가져오기위해 ref를 사용
-  const editerContent = useRef();
-  useEffect(()=>{
-    // 값을 들고왔는지 출력및 확인
-    console.log(editerContent.current.lastChild.lastChild)
-  })
-
-  
-
 
   // 로그인정보 중에서 이메일값
   const userEmail = useSelector((state) => state.currentUser.email);
@@ -42,7 +19,9 @@ const BoardAddFrom = () => {
   // 새로운 데이터를 담을 Board
   // 미리 객체 형식으로 작성 : 객체로 속성을 접근하면 결과값 undefined가 나옴
   const [board, setBoard] = useState({ userEmail });
-
+  // 에디터의 값을 받아오는 공간
+  const [content, setContent] = useState("")
+  
   // 리덕스의 dispatch
   const dispatch = useDispatch();
   // 라우터의 navigate
@@ -50,13 +29,42 @@ const BoardAddFrom = () => {
 
   // 값을 수정했을때 board의 내용을 수정하는 함수
   const onChange = (e) => {
-    setBoard({ ...board, [e.target.name]: e.target.value });
+    setBoard({ ...board, [e.target.name]: e.target.value});
+    console.log(board)
   };
+  // 에디터에 넣기위한 함수
+  const onChangeEditor = () => {
+    setContent(editerContent.current.firstChild.firstChild.nextSibling.lastChild.lastChild.lastChild.lastChild.innerHTML);
+  };
+
   // 글쓰기 완료 버튼을 눌렸을 실행하는 함수
   const onAddBoard = () => {
-    dispatch(addBoard(board));
+    // 에디터에서 가져오는 값을 따오 가져와서 추가함
+    dispatch(addBoard({
+      ...board,
+      content : content
+    }));
     navigate("/board");
   };
+
+  //토스트 에디터 가져옴
+  //const Editor = toastui.Editor;
+  // toastUI에서 값을 가져오기위해 ref를 사용
+  const editerContent = useRef();
+  useEffect(() => {
+    const editor = new Editor({
+      el: document.querySelector("#editor"),
+      height: "500px",
+      initialEditType :"wysiwyg",
+      hideModeSwitch: true,
+      initialValue : "글을 작성해주세요",
+      events: {
+        change: onChangeEditor
+      },
+    });
+    
+  }, []);
+
 
   return (
     <Container>
@@ -71,28 +79,18 @@ const BoardAddFrom = () => {
           ></Form.Control>
         </Col>
       </Row>
-
-      <Row className="my-4">
+      <Row className="mt-2">
         <Col>
-          <textarea
-            name="content"
-            onChange={(e) => {
+          <div id="editor" ref={editerContent} onChange={(e) => {
               onChange(e);
-            }}
-          >
-            {board.content}
-          </textarea>
+            }}>
+            
+          </div>
         </Col>
       </Row>
 
-      <Row>
-        <Col>
-          <div id="editor" ref={editerContent}></div>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
+      <Row className="mt-2 ">
+        <Col className="justify-content-end">
           <Button
             onClick={() => {
               navigate("/board");

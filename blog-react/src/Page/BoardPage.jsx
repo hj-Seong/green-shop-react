@@ -128,7 +128,7 @@ const BoardPrint = ({ board }) => {
       </Row>
       <Row className="my-4">
         <Col>
-          <h4>{board.content}</h4>
+          <h4 dangerouslySetInnerHTML={{__html: board.content}}></h4>
         </Col>
       </Row>
       <Row>
